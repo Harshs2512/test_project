@@ -1,0 +1,307 @@
+Select permissions
+<Row>
+    <Col lg={12} md={12} sm={12}>
+     <Card>
+                        <Card.Header className="d-flex justify-content-between align-items-center border-bottom card-header-height mb-4" >
+                            <h4 className="mb-0">Add New Role</h4>
+                            <Link href='/dashboard/roles-and-permissions/allroles' className='fs-4'>{`<-- Back`}</Link>
+                        </Card.Header>
+                        <Card.Body className="p-0 mx-10">
+                            <Form>
+                                <Form.Group id="heading" className='mb-3'>
+                                    <Form.Label>Enter Role</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Role Name"
+                                        id="rolename"
+                                        value={formData.rolename}
+                                        onChange={(e) => setFormData({ ...formData, rolename: e.target.value })}
+                                        required
+                                    />
+                                </Form.Group>
+                                <Form.Group className='mb-5 text-contain'>
+                                    <Form.Label>Select permissions</Form.Label>
+                                    <ReactTagInput tags={tags} onChange={(newTags) => setTags(newTags)} placeholder={"Please select permission"} />
+
+                                    <Form.Select onChange={(e) => addtoTag(e.target.value)} className="mt-2">
+                                        <option value="">Select permission</option>
+                                        {permissions.filter((item) => !tags.includes(item.permissionname)).map((c, index) => (
+                                            <option key={c._id} value={c.permissionname}>
+                                                {c.permissionname}
+                                            </option>
+                                        ))}
+                                    </Form.Select>
+                                </Form.Group>
+                                <Form.Group className='mb-5 text-contain'>
+                                    <Form.Label>Select permissions</Form.Label>
+                                    <ReactTagInput tags={tags} onChange={(newTags) => setTags(newTags)} placeholder={"Please select permission"} />
+
+                                    <Form.Control as="div" className="mt-2">
+                                        <Form.Check
+                                            type="checkbox"
+                                            label="Create"
+                                            checked={formData.selectedpermission.includes("create")}
+                                            onChange={() => actionUpdate(0, "create")}
+                                        />
+                                        <Form.Check
+                                            type="checkbox"
+                                            label="Read"
+                                            checked={formData.selectedpermission.includes("read")}
+                                            onChange={() => actionUpdate(1, "read")}
+                                        />
+                                        <Form.Check
+                                            type="checkbox"
+                                            label="Update"
+                                            checked={formData.selectedpermission.includes("update")}
+                                            onChange={() => actionUpdate(2, "update")}
+                                        />
+                                        <Form.Check
+                                            type="checkbox"
+                                            label="Delete"
+                                            checked={formData.selectedpermission.includes("delete")}
+                                            onChange={() => actionUpdate(3, "delete")}
+                                        />
+                                    </Form.Control>
+
+                                    <Form.Select onChange={(e) => addtoTag(e.target.value)} className="mt-2">
+                                        <option value="">Select permission</option>
+                                        {permissions.filter((item) => !tags.includes(item.permissionname)).map((c, index) => (
+                                            <option key={c._id} value={c.permissionname}>
+                                                {c.permissionname}
+                                            </option>
+                                        ))}
+                                    </Form.Select>
+                                </Form.Group>
+
+                            </Form>
+                            <Button variant="primary" onClick={() => submitData()} className='text-center mb-5'>
+                                Save
+                            </Button>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
+
+
+
+StatTopSVGIcon {
+    import { Card, Image } from 'react-bootstrap';
+import { useMediaQuery } from 'react-responsive';
+
+export const StatTopSVGIcon = (prop) => {
+	const { item } = prop
+	const { indexNumber } = prop
+	const bg = {
+		backgroundImage: `url(/images/cybrommain/Card${indexNumber + 1}.png)`,
+		backgroundSize: 'cover',
+		backgroundPosition: 'center'
+	}
+	const isMobile = useMediaQuery({ query: '(max-width:  376px)' });
+	const isTablet = useMediaQuery({ query: '(max-width: 768px)' });
+
+	return (
+		<Card className="card-hover-with-icon mb-6" style={bg} >
+			<div className='px-lg-4 py-lg-2 py-1 px-sm-1 px-2'>
+				<div className="d-flex">
+					{item && item._id && (
+						<Image
+							src={`/api/siteSettings/landingPage/placementRecords/getStudenticon/${item?._id}`}
+							alt=""
+							className={`rounded-circle ${isMobile ? ' avatar-md' : 'avatar-lg'} me-1 me-lg-5 img-fluid`}
+						/>
+					)}
+					<div className='text-start'>
+						{/* category / heading */}
+						<h1 className='text-white mb-0 fs-4'>{item?.student_name}</h1>
+						{/* 5 statistics text */}
+						<p className="mb-0 text-white">Is Placed At</p>
+					</div>
+				</div>
+				<div className="mt-2 align-items-center justify-content-center">
+					{item && item._id && (
+						<Image
+							src={`/api/siteSettings/landingPage/placementRecords/getCompanylogo/${item?._id}`}
+							style={{ margin: '0 auto', width: 'auto', maxHeight: '40px' }}
+							className='img-fluid'
+						/>
+					)}
+				</div>
+			</div>
+		</Card>
+	);
+};
+
+export default StatTopSVGIcon;
+
+}
+
+
+import React, { Fragment, useEffect, useRef, useState } from "react";
+import { TweenLite, TimelineMax, Linear, CSSPlugin } from "gsap";
+import { Col, Container, Row, Card } from "react-bootstrap";
+import gsap from "gsap";
+import Image from "next/image";
+import axios from "axios";
+const CircularCarousel = ({ alldata }) => {
+  const plugins = [CSSPlugin];
+  gsap.registerPlugin(...plugins);
+  const ferrisRef = useRef(null);
+  const centerRef = useRef(null);
+  const tlRef = useRef(null);
+  const [ids, setIds] = useState([]);
+  const [whyUsData, setWhyUsData] = useState([]);
+  const allActive = whyUsData.filter((data) => data.is_published === "active");
+
+  const fetchId = () => {
+    try {
+      const extractedIds = alldata?.map((item) => item._id);
+      setIds(extractedIds);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchId();
+  }, [alldata]);
+
+  useEffect(() => {
+    if (alldata?.length === 0 || ids.length === 0) {
+      return;
+    }
+
+    const ferris = ferrisRef.current;
+    const center = centerRef.current;
+    const tl = new TimelineMax({ repeat: -1, onUpdate: updateSlider });
+
+    TweenLite.set(center, { x: 400, y: 360 });
+
+    function addArms(numArms) {
+      var space = 360 / numArms;
+      for (var i = 0; i < numArms; i++) {
+        var newArm = document.createElement("div");
+        newArm.classList.add("arm");
+        center.appendChild(newArm);
+
+        var newPivot = document.createElement("div");
+        newPivot.classList.add("pivot", "outer");
+        center.appendChild(newPivot);
+
+        var newBasket = document.createElement("div");
+        newBasket.classList.add("basket");
+        newPivot.appendChild(newBasket);
+
+        const imageUrl =
+          ids.length > 0
+            ? `/api/siteSettings/landingPage/circularCarousel/getCompanylogo/${ids[i % ids.length]
+            }`
+            : "/default-image.jpg";
+        TweenLite.set(newBasket, {
+          rotation: -i * space,
+          transformOrigin: "50px",
+          backgroundImage: `url(${imageUrl ? imageUrl : ""})`,
+        });
+
+        TweenLite.set(newPivot, {
+          rotation: i * space,
+          transformOrigin: "50% 409px",
+        });
+        TweenLite.set(newArm, {
+          rotation: i * space - 90,
+          transformOrigin: "100px 100px",
+        });
+      }
+    }
+
+    addArms(15);
+    TweenLite.from(ferris, 1, { autoAlpha: 0 });
+
+    tl.to(center, 20, { rotation: 360, ease: Linear.easeNone });
+    tl.to(
+      document.querySelectorAll(".basket"),
+      20,
+      { rotation: "-=360", ease: Linear.easeNone },
+      0
+    );
+
+    tlRef.current = tl;
+
+    return () => {
+      tl.kill();
+    };
+  }, [alldata, ids, ferrisRef, centerRef]);
+
+  return (
+    <Fragment>
+      <section style={bgs}>
+        <Container className="d-none d-lg-block">
+          <div id="circular">
+            <Row className="text-center py-10 pb-10 mb-10">
+              <Col md={12} className="px-lg-10">
+                <span className="text-uppercase fw-semi-bold ls-md" style={{ color: 'white' }}>
+                  Our Collabrates
+                </span>
+                <h2 className="h1 fw-bold text-capitalize text-warning">
+                  MOU with Colleges
+                </h2>
+              </Col>
+            </Row>
+            <Row className="mt-5">
+              <Col>
+                <div className="ferris" id="ferris" ref={ferrisRef}>
+                  <div className="pivot" id="center" ref={centerRef}></div>
+                  <div className="circle circle1">
+                    <div className="text-center" style={{ marginTop: "-20px" }}>
+                      {/* <i className="fe fe-briefcase fs-2 text-primary bg-gray-100" /> */}
+                      <Image
+                        src={"/images/cybrommain/money.svg"}
+                        width={40}
+                        height={40}
+                      />
+                      <h3 className="mb-0" style={{ color: 'white' }}>12+</h3>
+                      <p style={{ color: 'white' }}>LPA Highest Package</p>
+                    </div>
+                    <div className="circle circle2">
+                      <div
+                        className="text-center"
+                        style={{ marginTop: "-20px" }}
+                      >
+                        <Image
+                          src={"/images/cybrommain/international-relations.svg"}
+                          width={45}
+                          height={45}
+                        />
+                        <h3 className="mb-0" style={{ color: 'white' }}>50+</h3>
+                        <p style={{ color: 'white' }}>International Placement</p>
+                      </div>
+                      <div className="circle circle3">
+                        <div
+                          className="text-center"
+                          style={{ marginTop: "-20px" }}
+                        >
+                          <Image
+                            src={"/images/cybrommain/hiring.svg"}
+                            width={50}
+                            height={50}
+                          />
+                          <h3 className="mb-0" style={{ color: 'white' }}>200+</h3>
+                          <p style={{ color: 'white' }}>Hiring Partners</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Col>
+            </Row>
+          </div>
+        </Container>
+        <div className="py-18 mt-n10">
+          <h2></h2>
+          <p></p>
+        </div>
+      </section>
+    </Fragment>
+  );
+};
+
+export default CircularCarousel;

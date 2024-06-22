@@ -1,0 +1,12 @@
+//
+// user.scss
+/* Custom CSS for disabled form elements */
+select:disabled,
+input:disabled {
+  background-color: #f0f0f0;
+  color: #777;
+  cursor: not-allowed;
+  /* Add any other styles you want for disabled elements */
+}
+
+//

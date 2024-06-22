@@ -1,0 +1,595 @@
+// Background  Gradient
+
+// light gradient
+.bg-gradient-color{
+  // background: radial-gradient(0deg, rgba(23, 82, 126, 1) 16%, rgba(1, 9, 15, 1) 100%);
+  background: radial-gradient(circle, rgba(23, 82, 126, 1) 0%, rgba(1, 9, 15, 1) 88%);
+}
+.bg-gradient-grid-contactus{
+  background: rgb(50,0,112);
+background: linear-gradient(63deg, rgba(50,0,112,1) 29%, rgba(255,219,96,0.17988445378151263) 100%, rgba(110,62,255,0.3647584033613446) 100%);
+}
+
+.bg-gradient-buttons{
+  background: rgb(254,109,0);
+  background: linear-gradient(69deg, rgba(254,109,0,1) 7%, rgba(244,157,0,1) 92%);
+}
+
+.bg-gradient-buttons-reverse{
+  background: rgb(254,109,0);
+  background: linear-gradient(313deg, rgba(254,109,0,1) 7%, rgba(244,157,0,1) 92%);
+}
+
+.bg-light-gradient {
+  background: rgba(221, 218, 255, 0.2);
+  background: linear-gradient(180deg, rgba(221, 218, 255, 0.2) 0%, rgba(255, 255, 255, 0) 80%);
+  background: -webkit-linear-gradient(180deg, rgba(221, 218, 255, 0.2) 0%, rgba(255, 255, 255, 0) 80%);
+  background: -moz-linear-gradient(180deg, rgba(221, 218, 255, 0.2) 0%, rgba(255, 255, 255, 0) 80%);
+}
+
+// light gradient bottom
+
+.bg-light-gradient-bottom {
+  background: rgba(221, 218, 255, 0.3);
+  background: linear-gradient(360deg, rgba(221, 218, 255, 0.3) 0%, rgba(255, 255, 255, 0) 80%);
+  background: -webkit-linear-gradient(360deg, rgba(221, 218, 255, 0.3) 0%, rgba(255, 255, 255, 0) 80%);
+  background: -moz-linear-gradient(360deg, rgba(221, 218, 255, 0.3) 0%, rgba(255, 255, 255, 0) 80%);
+}
+
+// light gradient top
+
+.bg-light-gradient-top {
+  background: rgba(221, 218, 255, 0.3);
+  background: linear-gradient(180deg, rgba(221, 218, 255, 0.3) 0%, rgba(255, 255, 255, 0) 80%);
+  background: -webkit-linear-gradient(180deg, rgba(221, 218, 255, 0.3) 0%, rgba(255, 255, 255, 0) 80%);
+  background: -moz-linear-gradient(180deg, rgba(221, 218, 255, 0.3) 0%, rgba(255, 255, 255, 0) 80%);
+}
+
+
+// bg mix gradient
+
+.bg-gradient-mix-shade {
+  background: linear-gradient(270.06deg, #4A52FF 0.05%, #C678FF 54.16%, #FE5D75 99.95%);
+}
+
+//*********************************************//
+
+
+$cell-height : 10px;
+$cell-width : 10px;
+$cell-margin: 2px;
+$cell-weekdays-width: 30px;
+
+html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+/* styles.css */
+
+/* styles.css */
+
+@keyframes fadeInOutContent {
+  0% {
+    color: greenyellow;
+  }
+  50% {
+    color: red;
+  }
+  100% {
+    color: greenyellow;
+  }
+}
+
+@keyframes moveRounded {
+  0% {
+    border-color: #7d0b31;
+  }
+  50% {
+    border-color: #25b80b;
+  }
+  100% {
+    border-color: #7d0b31;
+  }
+}
+
+.apply-now-border {
+ border: 1px solid #060c30; 
+  padding: 5px;
+  border-radius: 50%;
+  animation-name: fadeInOutContent, moveRounded;
+  animation-duration: 2s, 2s;
+  animation-timing-function: ease-in-out, ease-in-out;
+  animation-delay: 1s, 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-fill-mode: both;
+  animation-play-state: running;
+}
+
+
+#container {
+  height: 514px;
+  width: 930px;
+  margin: 50px auto;
+}
+
+.timeline {
+  margin: 20px;
+  margin-bottom: 60px;
+
+  .timeline-months {
+    display: flex;
+    padding-left: $cell-weekdays-width;
+
+    &-month {
+      width: $cell-width;
+      margin: $cell-margin;
+      border: 1px solid transparent;
+      font-size: 10px;
+    }
+
+    .Jan~.Jan,
+    .Feb~.Feb,
+    .Mar~.Mar,
+    .Apr~.Apr,
+    .May~.May,
+    .Jun~.Jun,
+    .Jul~.Jul,
+    .Aug~.Aug,
+    .Sep~.Sep,
+    .Oct~.Oct,
+    .Nov~.Nov,
+    .Dec~.Dec,
+    .Jan~.Jan {
+      visibility: hidden;
+    }
+  }
+
+  &-body {
+    display: flex;
+
+    .timeline-weekdays {
+      display: inline-flex;
+      flex-direction: column;
+      width: $cell-weekdays-width;
+
+      &-weekday {
+        font-size: 10px;
+        height: $cell-height;
+        border: 1px solid transparent;
+        margin: $cell-margin;
+        vertical-align: middle;
+      }
+    }
+
+    .timeline-cells {
+      display: inline-flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      height: #{(10 + 4) * 8}px;
+
+      &-cell {
+        height: $cell-height;
+        width: $cell-width;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        margin: $cell-margin;
+        border-radius: 2px;
+        background-color: rgba(31, 5, 126, 0.05);
+
+        &:hover {
+          border: 1px solid rgba(0, 0, 0, 0.3);
+        }
+      }
+    }
+  }
+}
+
+
+.carousel {
+  background-color: #000000;
+  margin: 15px;
+  color: #CCCCCC;
+  overflow: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff65e', endColorstr='#febf04', GradientType=1);
+  /* IE6-9 fallback on horizontal gradient */
+}
+
+.ferris {
+  position: relative;
+  margin: auto;
+  width: 800px;
+  height: 800px;
+  border-radius: 50%;
+  border: 2px solid rgb(255, 130, 130);
+  visibility: hidden;
+}
+
+.circle {
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+}
+
+.circle1 {
+  border: 3px dashed #ffffff;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  height: 80%;
+  transform: translate(-50%, -50%);
+}
+
+.circle2 {
+  border: 3px dashed #ffffff;
+  top: 50%;
+  left: 50%;
+  width: 65%;
+  height: 65%;
+  transform: translate(-50%, -50%);
+}
+
+.circle3 {
+  top: 50%;
+  left: 50%;
+  width: 45%;
+  height: 45%;
+  transform: translate(-50%, -50%);
+  border: 3px dashed #ffffff;
+}
+
+.pivot {
+  position: absolute;
+}
+
+.outer {
+  top: -403px;
+  border-radius: 50%;
+}
+
+.basket {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background-size: contain;
+  // background-color: red;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#circular {
+  width: 100%;
+  height: 47rem;
+  margin: 0px auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.navBtn {
+  margin-top: 8px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.3);
+  display: inline-block;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  color: #655;
+  cursor: pointer;
+}
+
+.ui-widget-content {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.card {
+  max-width: 100%;
+}
+
+.slider-container {
+  overflow: hidden;
+  width: 100%;
+}
+
+.slider {
+  white-space: nowrap;
+  transition: transform 1s linear;
+
+}
+
+.slider-item {
+  display: inline-block;
+  width: 20%;
+  /* Adjust as needed based on the number of items to display */
+}
+
+.custom_scrollbar::-webkit-scrollbar {
+  width: 5px;
+  /* Set the width of the scrollbar */
+}
+
+.custom_scrollbar::-webkit-scrollbar-thumb {
+  background-color: #ff9900;
+  border-radius: 6px;
+}
+
+.custom_scrollbar::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+  border-radius: 6px;
+}
+
+.category-btn {
+  background: rgba(0, 157, 255, 0.050)
+}
+
+.category-btn:hover {
+  background: rgba(0, 157, 255, 0.105)
+}
+
+.li {
+  padding-bottom: 3px;
+  cursor: pointer;
+}
+
+.li:after {
+  content: '';
+  display: block;
+  margin: auto;
+  height: 3px;
+  width: 0px;
+  background: transparent;
+  transition: width .5s ease, background-color .5s ease;
+}
+
+.li:hover:after {
+  width: 100%;
+  background: #ff9900;
+}
+
+.bg-gradient-mix-shade {
+  background: linear-gradient(270.06deg, #4A52FF 0.05%, #C678FF 54.16%, #FE5D75 99.95%);
+  background-size: 200% 200%;
+  /* You can adjust the size as needed */
+  animation: backgroundAnimation 5s linear infinite;
+  /* Adjust the animation duration (5s) and other properties as needed */
+}
+
+// light gradient top
+
+.bg-light-gradient-top {
+  background: rgba(221, 218, 255, 0.3);
+  background: linear-gradient(180deg, rgba(221, 218, 255, 0.3) 0%, rgba(255, 255, 255, 0) 80%);
+  background: -webkit-linear-gradient(180deg, rgba(221, 218, 255, 0.3) 0%, rgba(255, 255, 255, 0) 80%);
+  background: -moz-linear-gradient(180deg, rgba(221, 218, 255, 0.3) 0%, rgba(255, 255, 255, 0) 80%);
+}
+
+
+// bg mix gradient
+
+.bg-gradient-mix-shade {
+  background: linear-gradient(270.06deg, #4A52FF 0.05%, #C678FF 54.16%, #FE5D75 99.95%);
+}
+
+/* Add this CSS to your styles */
+.fade-in-out {
+  opacity: 0;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.fade-in-out.visible {
+  opacity: 1;
+}
+
+.square1 {
+  width: 100px;
+  height: 100px;
+  background: transparent;
+  border-top: 2px solid red;
+  border-left: 2px solid red;
+}
+
+.square2 {
+  width: 250px;
+  height: 250px;
+  position: relative;
+  top: -85px;
+  left: 15px;
+  background: #cbcbcb;
+}
+
+.square3 {
+  width: 250px;
+  height: 250px;
+  position: relative;
+  top: -170px;
+  left: 170px;
+  background: #dedede;
+  color: #ffc400
+}
+
+.square4 {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  top: -255px;
+  left: 336px;
+  border-bottom: 2px solid red;
+  border-right: 2px solid red;
+  background: transparent;
+}
+
+.bg-second-background {
+  background: rgb(255, 219, 96);
+  background: linear-gradient(19deg, rgba(255, 219, 96, 0.17988445378151263) 0%, rgba(202, 159, 255, 0.20229341736694673) 49%, rgba(110, 62, 255, 0.3647584033613446) 100%);
+}
+
+
+@media only screen and (min-width: 200px) and (max-width: 736px) {
+  .square1 {
+    width: 70px;
+    height: 70px;
+    background: transparent;
+    border-top: 2px solid red;
+    border-left: 2px solid red;
+  }
+
+  .square2 {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    top: -85px;
+    left: 15px;
+    background: #cbcbcb;
+  }
+
+  .square3 {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    top: -170px;
+    left: 170px;
+    background: #dedede;
+    color: #ffc400
+  }
+
+  .square4 {
+    width: 70px;
+    height: 70px;
+    position: relative;
+    top: -255px;
+    left: 236px;
+    border-bottom: 2px solid red;
+    border-right: 2px solid red;
+    background: transparent;
+  }
+}
+
+@keyframes scrollX {
+  from {
+    left: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+$common: (
+  flex-shrink: 0,
+  display: flex,
+  align-items: center,
+  justify-content: space-around,
+  white-space: nowrap,
+  width: 100%,
+);
+
+.marquee {
+  // display: flex;
+  // width: 900px;
+  overflow: hidden;
+  user-select: none;
+  mask-image: linear-gradient(
+    to right,
+    hsl(0 0% 0% / 0),
+    hsl(0 0% 0% / 1) 3%,
+    hsl(0 0% 0% / 1) 97%,
+    hsl(0 0% 0% / 0)
+  );
+}
+
+.marquee-group {
+  @each $property, $value in $common {
+    #{$property}: #{$value};
+  }
+  animation: scrollX 30s linear infinite;
+}
+
+.marquee-group2 {
+  @each $property, $value in $common {
+    #{$property}: #{$value};
+  }
+  animation: scrollX 30s linear infinite;
+  animation-direction: reverse;
+  animation-delay: -3s;
+}
+
+.card-0 {
+  color: #311B92;
+  background-color: #fff;
+  margin-top: 80px;
+  padding: 20px;
+  box-shadow: 0px 4px 8px 0px #757575;
+  margin-bottom: 20px;
+}
+
+.profile-pic {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  position: absolute;
+  top: -50px;
+  left: calc(50% - 50px);
+}
+
+.content {
+  color: #000;
+  font-size: 14px;
+}
+
+.social {
+  margin-top: 150px;
+}
+
+@media screen and (max-width: 991px) {
+  .card1 {
+      border-bottom-left-radius: 0px;
+      border-top-right-radius: 20px;
+  }
+
+  .card2 {
+      border-bottom-left-radius: 20px;
+      border-top-right-radius: 0px;
+  }
+}
+.dashed-border{
+  border: dashed 2px black;
+}
+
+.bgImage {
+  background-size: cover;
+  background-position: center;
+}
+
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - 360px));
+  }
+}
+.logos:hover .logos-slide {
+  animation-play-state: paused;
+}
+
+.logos-slide {
+  display: inline-block;
+  animation: 25s slide infinite linear;
+}
+
+.subcoursecard {
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 768px) {
+  .subcoursecard:last-child {
+    margin-top: -100px; /* Adjust as needed for desired overlap */
+  }
+}

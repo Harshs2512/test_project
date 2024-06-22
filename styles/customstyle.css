@@ -1,0 +1,47 @@
+/* Custom CSS for disabled form elements */
+select:disabled,
+input:disabled {
+  background-color: #f0f0f0;
+  color: #777;
+  cursor: not-allowed;
+  /* Add any other styles you want for disabled elements */
+}
+
+
+.github-calendar {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 4px;
+  max-width: 300px;
+}
+
+.header {
+  padding: 8px;
+  text-align: center;
+  font-weight: bold;
+  background-color: #f0f0f0;
+}
+
+.day {
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.current-month {
+  background-color: #fff;
+}
+
+.other-month {
+  color: #bbb;
+}
+
+.today {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.weekend {
+  background-color: #f8f8f8;
+}
+
