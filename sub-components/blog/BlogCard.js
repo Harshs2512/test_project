@@ -20,9 +20,10 @@ const BlogCard = ({ item }) => {
 		return `${month} ${day}, ${year}`;
 	};
 
+	console.log(item, 'all')
+	console.log(item.thumbnail, 'thumbnail')
 	return (
 		<Card className="mb-4 shadow-lg ">
-			{console.log(item)}
 			<Link href={`/blog/${item.slug}`} className="card-img-top">
 				{item && item._id ?
 					(<CldImage
