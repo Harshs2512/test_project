@@ -29,7 +29,7 @@ const BlogCard = ({ item }) => {
 					(<CldImage
 						width="960"
 						height="600"
-						src={item?.thumbnail}
+						src={'https://res.cloudinary.com/dodumze05/image/upload/v1719053954/z3hnxceugsla1tkhzcxb.jpg'}
 						sizes="100vw"
 						alt="Description of my image"
 						className="rounded-top-md img-fluid"
