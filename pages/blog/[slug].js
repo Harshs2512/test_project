@@ -48,7 +48,8 @@ const BlogArticleSingle = (props) => {
     const day = String(date.getDate()).padStart(2, "0");
     return `${month} ${day}, ${year}`;
   };
-  const posts = props.blogData;
+  const posts = props.data;
+  console.log(posts)
   return (
     <Fragment>
       <section className="py-4 py-lg-8 pb-14 bg-white ">
@@ -189,22 +190,22 @@ const BlogArticleSingle = (props) => {
 };
 // a
 export const getServerSideProps = async () => {
-	try {
-		const res = await axios.get(`${process.env.NEXTAUTH_URL}/api/blogs/getposts`);
-		const blogData = res?.data || [];
-		return {
-			props: {
-				data: blogData,
-			},
-		};
-	} catch (error) {
-		console.error("Error fetching data:", error);
-		return {
-			props: {
-				data: [],
-			},
-		};
-	}
+  try {
+    const res = await axios.get(`${process.env.NEXTAUTH_URL}/api/blogs/getposts`);
+    const blogData = res?.data || [];
+    return {
+      props: {
+        data: blogData,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return {
+      props: {
+        data: [],
+      },
+    };
+  }
 };
 
 export default BlogArticleSingle;
