@@ -15,7 +15,7 @@ const handler = async (req, res) => {
 const getHandler = async (req, res) => {
     await connectDB();
     try {
-        const categories = await Post.find().select('-content');
+        const categories = await Post.find();
         if (categories) {
             // l
             res.status(200).send(categories);

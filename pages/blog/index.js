@@ -109,6 +109,7 @@ export const getStaticProps = async () => {
 				data: blogData,
 				category: category,
 			},
+			revalidate: 1
 		};
 	} catch (error) {
 		console.error("Error fetching data:", error);
