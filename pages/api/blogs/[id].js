@@ -30,7 +30,7 @@ const deleteHandler = async (req, res) => {
 
 const getHandler = async (req, res) => {
     await connectDB();
-    const post = await BlogModel.findById(req.query.id).select('-thumbnail');
+    const post = await BlogModel.findById(req.query.id);
     res.status(200).send(post);
 };
 

@@ -21,6 +21,7 @@ const BlogCard = ({ item }) => {
 	};
 
 	console.log(item, 'all')
+
 	console.log(item.thumbnail, 'thumbnail')
 	return (
 		<Card className="mb-4 shadow-lg ">
@@ -29,7 +30,7 @@ const BlogCard = ({ item }) => {
 					(<CldImage
 						width="960"
 						height="600"
-						src={'https://res.cloudinary.com/dodumze05/image/upload/v1719053954/z3hnxceugsla1tkhzcxb.jpg'}
+						src={item?.thumbnail}
 						sizes="100vw"
 						alt="Description of my image"
 						className="rounded-top-md img-fluid"
