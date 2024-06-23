@@ -14,6 +14,7 @@ import { Fragment, Suspense, useEffect } from 'react';
 import axios from 'axios';
 
 const Home = (props) => {
+  console.log(props)
   const { testimonialData, studentstory, reviews, circularcarousel, demandedCourse, allcourses, carouselbutton, offlineCourses } = props
   useEffect(() => {
     document.body.className = 'bg-light';
@@ -60,7 +61,7 @@ const Home = (props) => {
   );
 };
 
-export const getServersiProps = async () => {
+export const getStaticProps = async () => {
   try {
     const data1 = await axios.get(`${process.env.NEXTAUTH_URL}/api/siteSettings/landingPage/placementRecords/getRecords`);
     const data2 = await axios.get(`${process.env.NEXTAUTH_URL}/api/siteSettings/landingPage/placementStory/getRecords`);

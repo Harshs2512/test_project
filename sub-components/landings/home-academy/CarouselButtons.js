@@ -72,7 +72,7 @@ const CarouselButtons = ({ alldata,bg }) => {
                 <Row>
                     <Col md={3} className="p-2" style={{ maxHeight: '690px', overflowY: 'auto' }}>
                         <div className='p-2 d-md-block d-flex'>
-                            {alldata.map((item, arrayIndex) => (
+                            {alldata?.map((item, arrayIndex) => (
                                 <div key={arrayIndex}>
                                     <div
                                         className={`rounded d-flex p-lg-2 p-2 border border-1 border-${getBorderColor(divindex)} mb-3 card-hover-with-icon shadow-lg me-2`}

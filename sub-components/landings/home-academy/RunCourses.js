@@ -107,7 +107,7 @@ const RunCourses = ({ alldata }) => {
             <Container>
                 {selectedTab === 'diploma' ? (
                     <Slider {...settings} className="pb-sm-5 mb-5 slick-slider-wrapper">
-                        {alldata.slice(0, 10).map((item, index) => (
+                        {alldata?.slice(0, 10).map((item, index) => (
                             <div className="item px-md-1" key={item.id}>
                                 <OfflineCourseCard key={index} item={item} extraclass="mx-2 my-6" />
                             </div>
