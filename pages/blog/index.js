@@ -10,7 +10,7 @@ import axios from 'axios';
 
 const BlogListing = (props) => {
 	const liveCategory = props.category?.categories?.filter((item) => item.status === "live")
-	const [posts, setPosts] = useState(props?.data);
+	const posts = props?.data;
 	return (
 		<Fragment>
 			<div className="optinly-embed-popup-7626aa0d-1795-446d-b98c-f318b77959d3" />
@@ -97,7 +97,7 @@ const BlogListing = (props) => {
 	);
 };
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
 	try {
 		const res = await axios.get(`${process.env.NEXTAUTH_URL}/api/blogs/getposts`);
 		const cat = await axios.get(`${process.env.NEXTAUTH_URL}/api/blogs/category/getcategory`);
