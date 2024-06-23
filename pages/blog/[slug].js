@@ -187,7 +187,7 @@ const BlogArticleSingle = (props) => {
     </Fragment >
   );
 };
-
+// a
 export const getServerSideProps = async () => {
 	try {
 		const res = await axios.get(`${process.env.NEXTAUTH_URL}/api/blogs/getposts`);
