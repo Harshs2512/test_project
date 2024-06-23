@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     res.status(200).json({
         signature: signature,
         timestamp: timestamp,
-        cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+        cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
         api_key: process.env.CLOUDINARY_API_KEY
     });
 }
