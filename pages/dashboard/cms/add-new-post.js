@@ -116,7 +116,7 @@ const AddNewPost = () => {
 		console.log(data)
 		const formData = new FormData();
 		formData.append('file', thumbnail);
-		formData.append('api_key', process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY);
+		formData.append('api_key', process.env.CLOUDINARY_API_KEY);
 		formData.append('timestamp', data.timestamp);
 		formData.append('signature', data.signature);
 		formData.append('upload_preset', 'vblzgnrs');
