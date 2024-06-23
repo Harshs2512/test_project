@@ -214,7 +214,7 @@ export const getStaticProps = async (context) => {
       props: {
         blogData,
       },
-      revalidate: 10
+      revalidate: 1
     };
   } catch (error) {
     console.error("Error fetching data:", error);
