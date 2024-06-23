@@ -14,7 +14,6 @@ import { Fragment, Suspense, useEffect } from 'react';
 import axios from 'axios';
 
 const Home = (props) => {
-  console.log(props)
   const { testimonialData, studentstory, reviews, circularcarousel, demandedCourse, allcourses, carouselbutton, offlineCourses } = props
   useEffect(() => {
     document.body.className = 'bg-light';
