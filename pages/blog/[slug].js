@@ -168,7 +168,7 @@ const BlogArticleSingle = (props) => {
                       <h2>Related Post</h2>
                     </div>
                   </Col>
-                  {posts?.slice(0, 3).map((item, index) => (
+                  {/* {posts?.slice(0, 3).map((item, index) => (
                     <Col
                       xl={4}
                       lg={4}
@@ -179,7 +179,7 @@ const BlogArticleSingle = (props) => {
                     >
                       <BlogCard item={item} />
                     </Col>
-                  ))}
+                  ))} */}
                 </Row>
               </Fragment>
             ))}
