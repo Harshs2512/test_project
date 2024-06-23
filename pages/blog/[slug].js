@@ -188,15 +188,33 @@ const BlogArticleSingle = (props) => {
     </Fragment >
   );
 };
-// a
-export const getServerSideProps = async () => {
+
+export const getStaticPaths = async (context) => {
   try {
     const res = await axios.get(`${process.env.NEXTAUTH_URL}/api/blogs/getposts`);
-    const blogData = res?.data || [];
+    const blogData = res?.data;
+    const paths = blogData.map((post) => ({
+      params: { slug: post.slug },
+    }));
+    return { paths, fallback: "blocking" };
+  } catch (error) {
+    console.error("Error fetching data:", error);
     return {
       props: {
-        data: blogData,
+        data: [],
       },
+    };
+  }
+};
+export const getStaticProps = async (context) => {
+  try {
+    const res = await axios.get(`${process.env.NEXTAUTH_URL}/api/blogs/getposts`);
+    const blogData = res?.data;
+    return {
+      props: {
+        blogData,
+      },
+      revalidate: 10
     };
   } catch (error) {
     console.error("Error fetching data:", error);

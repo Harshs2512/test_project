@@ -98,7 +98,7 @@ const BlogListing = (props) => {
 	);
 };
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
 	try {
 		const res = await axios.get(`${process.env.NEXTAUTH_URL}/api/blogs/getposts`);
 		const cat = await axios.get(`${process.env.NEXTAUTH_URL}/api/blogs/category/getcategory`);
@@ -120,5 +120,6 @@ export const getServerSideProps = async () => {
 		};
 	}
 };
+
 BlogListing.Layout = BlankLayout;
 export default BlogListing;

@@ -111,23 +111,7 @@ const AddNewPost = () => {
 		return titleValid && categoryValid && thumbnailValid && contentValid && slugValid;
 	};
 	const [content, setContent] = useState('');
-	const handleUpload = async () => {
-		const { data } = await axios.get('/api/getUploadSignature');
-		console.log(data)
-		const formData = new FormData();
-		formData.append('file', thumbnail);
-		formData.append('api_key', process.env.CLOUDINARY_API_KEY);
-		formData.append('timestamp', data.timestamp);
-		formData.append('signature', data.signature);
-		formData.append('upload_preset', 'vblzgnrs');
-
-		const response = await axios.post(
-			`https://api.cloudinary.com/v1_1/dodumze05/upload`,
-			formData
-		);
-		console.log(response.data)
-		// setUploadData(response.data);
-	};
+	
 	const submitHandler = async (e) => {
 		if (!validateForm()) {
 			return;
@@ -142,17 +126,31 @@ const AddNewPost = () => {
 			productData.append("postcategory", postcategory);
 			productData.append("content", content);
 			productData.append("metatags", tags);
-			console.log(productData)
-			const { data } = await axios.post("/api/blogs/addblog", productData);
-			if (data?.success) {
-				toast.success(data?.message);
-				// setTimeout(() => {
-				// 	router.push("/dashboard/cms/all-posts");
-				// }, 1000);
-			} else {
-				toast.info("Blog Already Exist");
-			}
-			setLoading(false)
+			const res = await axios.get('/api/getUploadSignature');
+			// const formData = new FormData();
+			// formData.append('file', thumbnail);
+			// formData.append('api_key', res.data.api_key);
+			// formData.append('timestamp', res.data.timestamp);
+			// formData.append('signature', res.data.signature);
+			// formData.append('upload_preset', 'vblzgnrs');
+			// const response = await axios.post(
+			// 	`https://api.cloudinary.com/v1_1/dodumze05/upload`,
+			// 	formData
+			// );
+			// console.log(response)
+			// if (response.status === 200) {
+				const { data } = await axios.post("/api/blogs/addblog", productData);
+				console.log(data)
+				if (data?.success) {
+					toast.success(data?.message);
+					// setTimeout(() => {
+					// 	router.push("/dashboard/cms/all-posts");
+					// }, 1000);
+				} else {
+					toast.info("Blog Already Exist");
+				}
+				setLoading(false)
+			// }
 		} catch (error) {
 			console.log(error)
 		}
@@ -201,31 +199,31 @@ const AddNewPost = () => {
 							<h4 className="mb-0">Create Post</h4>
 						</Card.Header>
 						<Card.Body>
-							<Form.Group className="mb-5">
-								<Form.Label htmlFor="postTitle">Thumbnail</Form.Label>
-								{/* <div {...getRootProps({ className: 'dropzone' })}> */}
-								<Form.Control
-									id="image"
-									ref={thumbnailInputRef}
-									type="file"
-									name="image"
-									className={thumbnailError ? 'error' : ''}
-									accept="image/*"
-									onChange={handleChangeThumbnail}
-									autoFocus
-								/>
 
-								<p>Drag &apos;n&apos; drop some files here, or click to select files</p>
-								{/* </div> */}
-								{/* <aside style={thumbsContainer}>{thumbs}</aside> */}
-								<Form.Text className='text-danger'>
-									{thumbnailError}
-								</Form.Text>
-							</Form.Group>
-							<button onClick={handleUpload}>Upload</button>
 							<Form className="mt-4" onSubmit={submitHandler}>
 								<Row>
 									<Col md={9} sm={12}>
+										<Form.Group className="mb-5">
+											<Form.Label htmlFor="postTitle">Thumbnail</Form.Label>
+											{/* <div {...getRootProps({ className: 'dropzone' })}> */}
+											<Form.Control
+												id="image"
+												ref={thumbnailInputRef}
+												type="file"
+												name="image"
+												className={thumbnailError ? 'error' : ''}
+												accept="image/*"
+												onChange={handleChangeThumbnail}
+												autoFocus
+											/>
+
+											<p>Drag &apos;n&apos; drop some files here, or click to select files</p>
+											{/* </div> */}
+											{/* <aside style={thumbsContainer}>{thumbs}</aside> */}
+											<Form.Text className='text-danger'>
+												{thumbnailError}
+											</Form.Text>
+										</Form.Group>
 										{/* Title  */}
 										<Form.Group className="mb-5">
 											<Form.Label htmlFor="postTitle">Title</Form.Label>
