@@ -52,9 +52,6 @@ const BlogArticleSingle = (props) => {
   return (
     <Fragment>
       <section className="py-4 py-lg-8 pb-14 bg-white ">
-        {/* {loadingPosts ? (
-          <Loading />
-				) : ( */}
         <Container>
           {posts
             ?.filter(function (dataSource) {
@@ -190,39 +187,23 @@ const BlogArticleSingle = (props) => {
   );
 };
 
-export const getStaticPaths = async (context) => {
-  try {
-    const res = await axios.get(`${process.env.NEXTAUTH_URL}/api/blogs/getposts`);
-    const blogData = res?.data;
-    const paths = blogData.map((post) => ({
-      params: { slug: post.slug },
-    }));
-    return { paths, fallback: "blocking" };
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return {
-      props: {
-        data: [],
-      },
-    };
-  }
+export const getServerSideProps = async () => {
+	try {
+		const res = await axios.get(`${process.env.NEXTAUTH_URL}/api/blogs/getposts`);
+		const blogData = res?.data || [];
+		return {
+			props: {
+				data: blogData,
+			},
+		};
+	} catch (error) {
+		console.error("Error fetching data:", error);
+		return {
+			props: {
+				data: [],
+			},
+		};
+	}
 };
-export const getStaticProps = async (context) => {
-  try {
-    const res = await axios.get(`${process.env.NEXTAUTH_URL}/api/blogs/getposts`);
-    const blogData = res?.data;
-    return {
-      props: {
-        blogData,
-      },
-    };
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return {
-      props: {
-        data: [],
-      },
-    };
-  }
-};
+
 export default BlogArticleSingle;
