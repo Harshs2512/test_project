@@ -111,7 +111,7 @@ const AddNewPost = () => {
 		return titleValid && categoryValid && thumbnailValid && contentValid && slugValid;
 	};
 	const [content, setContent] = useState('');
-	
+
 	const submitHandler = async (e) => {
 		if (!validateForm()) {
 			return;
@@ -126,31 +126,17 @@ const AddNewPost = () => {
 			productData.append("postcategory", postcategory);
 			productData.append("content", content);
 			productData.append("metatags", tags);
-			const res = await axios.get('/api/getUploadSignature');
-			// const formData = new FormData();
-			// formData.append('file', thumbnail);
-			// formData.append('api_key', res.data.api_key);
-			// formData.append('timestamp', res.data.timestamp);
-			// formData.append('signature', res.data.signature);
-			// formData.append('upload_preset', 'vblzgnrs');
-			// const response = await axios.post(
-			// 	`https://api.cloudinary.com/v1_1/dodumze05/upload`,
-			// 	formData
-			// );
-			// console.log(response)
-			// if (response.status === 200) {
-				const { data } = await axios.post("/api/blogs/addblog", productData);
-				console.log(data)
-				if (data?.success) {
-					toast.success(data?.message);
-					// setTimeout(() => {
-					// 	router.push("/dashboard/cms/all-posts");
-					// }, 1000);
-				} else {
-					toast.info("Blog Already Exist");
-				}
-				setLoading(false)
-			// }
+			const { data } = await axios.post("/api/blogs/addblog", productData);
+			console.log(data)
+			if (data?.success) {
+				toast.success(data?.message);
+				setTimeout(() => {
+					router.push("/dashboard/cms/all-posts");
+				}, 1000);
+			} else {
+				toast.info("Blog Already Exist");
+			}
+			setLoading(false)
 		} catch (error) {
 			console.log(error)
 		}

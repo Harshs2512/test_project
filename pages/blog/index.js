@@ -11,7 +11,6 @@ import axios from 'axios';
 const BlogListing = (props) => {
 	const liveCategory = props.category?.categories?.filter((item) => item.status === "live")
 	const posts = props?.data;
-	console.log(posts)
 	return (
 		<Fragment>
 			<div className="optinly-embed-popup-7626aa0d-1795-446d-b98c-f318b77959d3" />
@@ -109,7 +108,7 @@ export const getStaticProps = async () => {
 				data: blogData,
 				category: category,
 			},
-			revalidate: 1
+			revalidate: 10
 		};
 	} catch (error) {
 		console.error("Error fetching data:", error);

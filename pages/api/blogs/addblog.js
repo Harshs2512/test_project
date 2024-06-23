@@ -56,7 +56,7 @@ export default async function handler(req, res) {
             const fileStream = fs.createReadStream(filePath);
 
             const cloudinaryUploadStream = cloudinary.uploader.upload_stream(
-                { upload_preset: 'vblzgnrs' },
+                { upload_preset: process.env.CLOUDINARY_PRESET },
                 async (error, result) => {
                     if (error) {
                         console.error('Error uploading to Cloudinary:', error);

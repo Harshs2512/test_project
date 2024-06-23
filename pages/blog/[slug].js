@@ -48,12 +48,10 @@ const BlogArticleSingle = (props) => {
     const day = String(date.getDate()).padStart(2, "0");
     return `${month} ${day}, ${year}`;
   };
-  const posts = props.data;
-  console.log(posts)
+  const posts = props.blogData;
   return (
     <Fragment>
       <section className="py-4 py-lg-8 pb-14 bg-white ">
-
         <Container>
           {posts
             ?.filter(function (dataSource) {
@@ -168,7 +166,7 @@ const BlogArticleSingle = (props) => {
                       <h2>Related Post</h2>
                     </div>
                   </Col>
-                  {/* {posts?.slice(0, 3).map((item, index) => (
+                  {posts?.slice(0, 3).map((item, index) => (
                     <Col
                       xl={4}
                       lg={4}
@@ -179,7 +177,7 @@ const BlogArticleSingle = (props) => {
                     >
                       <BlogCard item={item} />
                     </Col>
-                  ))} */}
+                  ))}
                 </Row>
               </Fragment>
             ))}
@@ -214,7 +212,7 @@ export const getStaticProps = async (context) => {
       props: {
         blogData,
       },
-      revalidate: 1
+      revalidate: 10
     };
   } catch (error) {
     console.error("Error fetching data:", error);
