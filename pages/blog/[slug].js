@@ -52,6 +52,7 @@ const BlogArticleSingle = (props) => {
   return (
     <Fragment>
       <section className="py-4 py-lg-8 pb-14 bg-white ">
+
         <Container>
           {posts
             ?.filter(function (dataSource) {
