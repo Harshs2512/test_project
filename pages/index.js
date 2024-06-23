@@ -60,7 +60,7 @@ const Home = (props) => {
   );
 };
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   try {
     const data1 = await axios.get(`${process.env.NEXTAUTH_URL}/api/siteSettings/landingPage/placementRecords/getRecords`);
     const data2 = await axios.get(`${process.env.NEXTAUTH_URL}/api/siteSettings/landingPage/placementStory/getRecords`);
